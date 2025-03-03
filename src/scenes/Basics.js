@@ -22,7 +22,6 @@ class Basics extends Phaser.Scene {
         let tomato = this.add.sprite(centerX, centerY, 'fruitandveg', 'tomato')
         let verygoodpear = this.add.sprite(64,64, 'fruitandveg', 'pear')
 
-
         // add text
         this.instructionText = this.add.bitmapText(centerX, centerY, 'gem_font', '', 24).setOrigin(0.5)
 
@@ -61,19 +60,23 @@ class Basics extends Phaser.Scene {
                 {
                     x: w - 64,
                     duration: 500,
+                    angle: 90
                 },
                 {
                     y: h - 64,
                     duration: 1000,
-                    ease: 'Sine.easeOut'
+                    ease: 'Sine.easeOut',
+                    angle: 180
                 },
                 {
                     x: 64,
-                    duration: 1500
+                    duration: 1500,
+                    angle: 270
                 },
                 {
                     y: 64,
-                    duration: 1000
+                    duration: 1000,
+                    angle: 360
                 }
             ]
         })
@@ -82,6 +85,9 @@ class Basics extends Phaser.Scene {
         this.input.on('pointerdown', () => {
             verygoodpear.setPosition(64,64);     //hard coded value
             pearTweenChain.restart();
+
+            //to reset the angle of the pear
+            verygoodpear.setAngle(0)
         })
 
         // enable scene reload key
@@ -98,6 +104,3 @@ class Basics extends Phaser.Scene {
         }
     }
 }
-
-//CHALLENGE: Look at image i taken, if pressed onclick, it should also reset its position and the look of the pear.
-//HINT: setAngle 
